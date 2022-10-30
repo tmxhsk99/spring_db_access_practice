@@ -25,7 +25,7 @@ public class MemoryItemRepository implements ItemRepository {
 
     @Override
     public void update(Long itemId, ItemUpdateDto updateParam) {
-        Item findItem = findById(itemId).orElseThrow();
+        Item findItem = findById(itemId).orElseThrow(() -> new RuntimeException("업데이트 시 에러 발생"));
         findItem.setItemName(updateParam.getItemName());
         findItem.setPrice(updateParam.getPrice());
         findItem.setQuantity(updateParam.getQuantity());
